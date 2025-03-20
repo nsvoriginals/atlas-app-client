@@ -1,0 +1,23 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { Dashboard } from "./pages/ADashboard";
+import Landing from "./pages/Landing";
+
+
+export default function App() {
+  return (
+    <main className="m-0 p-0 box-border flex items-center justify-center font-satoshi">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/user/profile" element={<Dashboard />} />
+          <Route path="/auth/signup" element={<Register />} />
+          <Route path="/auth/signin" element={<Login />} />
+       
+          <Route path="*" element={<div className="text-center text-3xl mt-20">404 - Page Not Found</div>} />
+        </Routes>
+      </BrowserRouter>
+    </main>
+  );
+}
