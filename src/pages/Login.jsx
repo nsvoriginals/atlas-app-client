@@ -5,7 +5,6 @@ import { useAtom } from "jotai";
 import axios from "axios";
 import userLogin from "../store/userLogin";
 
-
 const Login= () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [user, setUser] = useAtom(userLogin);
@@ -18,12 +17,15 @@ const Login= () => {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`, {
+      
+      const response = await axios.post(`http://localhost:3000/auth/login`, {
         email: user.email,
         password: user.password,
       });
-
+      const token=response.data.token;
+      localStorage.setItem('token',token);
       console.log("Login successful:", response.data);
+      navigate('/user/profile')
       
     } catch (err) {
       console.error("Login error:", err.response?.data?.message || err.message);

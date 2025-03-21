@@ -17,13 +17,15 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(`${process.env.BACKEND_URL}/auth/register`, {
+      
+      const response = await axios.post(`http://localhost:3000/auth/register`, {
         username: user.username,
         email: user.email,
         password: user.password,
       });
 
       console.log("Registration successful:", response.data);
+      navigate('/auth/signin');
     } catch (err) {
       console.error("Registration error:", err);
     }
@@ -32,7 +34,7 @@ const Register = () => {
   return (
     <div className="h-screen flex items-center justify-center bg-white font-satoshi">
       <div className="bg-white text-gray-700 rounded-2xl shadow-2xl max-w-4xl flex overflow-hidden w-full">
-        {/* Left Side */}
+        
         <div
           className="hidden md:flex flex-col justify-between p-8 w-1/2 bg-cover bg-center relative"
           style={{
@@ -46,7 +48,7 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Right Side */}
+        
         <div className="p-10 w-full md:w-1/2 flex flex-col justify-center">
           <h2 className="text-3xl font-bold text-gray-900">Create an account</h2>
           <p className="text-gray-500 text-sm mt-2">
@@ -59,7 +61,7 @@ const Register = () => {
             </span>
           </p>
 
-          {/* Input Fields */}
+         
           <div className="mt-6 space-y-4">
             <input
               value={user.username}
