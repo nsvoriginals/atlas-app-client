@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import { Dashboard } from "./pages/ADashboard";
 import Landing from "./pages/Landing";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import AtsPage from "./pages/AtsPage";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/user/ats" element={<AtsPage />} />
           <Route 
             path="/user/profile" 
             element={
