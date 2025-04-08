@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const JobInterviewWidget = () => {
   const [jobRole, setJobRole] = useState("");
   const [experience, setExperience] = useState("");
   const [topics, setTopics] = useState("");
   const [resume, setResume] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleFileChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -12,10 +16,36 @@ const JobInterviewWidget = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({ jobRole, experience, topics, resume });
-    alert("Form submitted successfully!");
+
+    // Prepare the data to send to the API
+    const formData = new FormData();
+    formData.append("jobRole", jobRole);
+    formData.append("experience", experience);
+    formData.append("topics", topics);
+    if (resume) {
+      formData.append("file", resume);
+    }
+
+    try {
+      // Send POST request to the backend
+      const response = await fetch("http://localhost:8080/api/generate", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setProfile(data.data.candidate_profile);
+        setQuestions(data.data.interview_questions);
+      } else {
+        alert("Failed to fetch data.");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   return (
@@ -57,7 +87,7 @@ const JobInterviewWidget = () => {
           </div>
         </div>
 
-        {/* Optional Topics Input */}
+        {/* Special Topics (Optional) */}
         <div>
           <label className="block font-medium">Special Topics (Optional)</label>
           <input
@@ -89,6 +119,30 @@ const JobInterviewWidget = () => {
           Submit
         </button>
       </form>
+
+      {/* Display Candidate Profile */}
+      {profile && (
+        <div className="mt-6">
+          <h3 className="text-lg font-bold">Candidate Profile</h3>
+          <p>Experience Level: {profile.experience_level}</p>
+          <p>Key Skills: {profile.key_skills.join(", ")}</p>
+          <p>Primary Domain: {profile.primary_domain}</p>
+          <p>Years of Experience: {profile.years_of_experience}</p>
+        </div>
+      )}
+
+      {/* Display Interview Questions */}
+      {questions.length > 0 && (
+        <div className="mt-6">
+          <button
+            onClick={() => navigate("/interview-questions", { state: { questions } })
+          }
+            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 mt-4"
+          >
+            View Interview Questions
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { Dashboard } from "./pages/ADashboard";
 import Landing from "./pages/Landing";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import AtsPage from "./pages/AtsPage";
+import InterviewQuestionsPage from "./pages/InterviewQuestionsPage";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/user/ats" element={<AtsPage />} />
+          <Route path="/interview-questions" element={<InterviewQuestionsPage />} />
           <Route 
             path="/user/profile" 
             element={
