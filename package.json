@@ -13,7 +13,7 @@
     "@tailwindcss/vite": "^4.0.14",
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
-    "framer-motion": "^12.5.0",
+    "framer-motion": "^12.6.3",
     "jotai": "^2.12.2",
     "jspdf": "^3.0.1",
     "lucide-react": "^0.483.0",
