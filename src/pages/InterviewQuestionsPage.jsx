@@ -25,7 +25,7 @@ const InterviewQuestionsPage = () => {
       yPosition += 50; // Adjust space between questions
     });
 
-    // Save the document as a PDF
+    
     doc.save("interview_questions.pdf");
   };
 
