@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.0.14",
     "axios": "^1.8.4",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.6.3",
+    "gsap": "^3.12.7",
     "jotai": "^2.12.2",
     "jspdf": "^3.0.1",
     "lucide-react": "^0.483.0",
@@ -23,6 +27,7 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-router-dom": "^7.4.0",
+    "react-use": "^17.6.0",
     "uglify-js": "^3.19.3"
   },
   "devDependencies": {

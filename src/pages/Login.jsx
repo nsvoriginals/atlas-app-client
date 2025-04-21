@@ -22,7 +22,7 @@ const Login= () => {
         email: user.email,
         password: user.password,
       });
-      const token=response.data.token;
+      const token=response.data.access_token;
       localStorage.setItem('token',token);
       console.log("Login successful:", response.data);
       navigate('/user/profile')
