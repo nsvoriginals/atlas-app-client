@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../components/Button";
+import { useUser } from "../context/UserContext";
 
 const AtsPage: React.FC = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const AtsPage: React.FC = () => {
   const scoreRef = useRef<HTMLDivElement>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
+  const { username } = useUser();
 
   // Reset scroll position and handle page transitions
   useEffect(() => {
@@ -76,7 +78,7 @@ const AtsPage: React.FC = () => {
               <Button
                 text="Back to Dashboard"
                 onClick={() => navigate('/user/profile')}
-                className="bg-gray-600 hover:bg-gray-700"
+                variant="secondary"
               />
               <motion.h2 
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -84,7 +86,7 @@ const AtsPage: React.FC = () => {
                 transition={{ delay: 0.3 }}
                 className="text-2xl sm:text-3xl font-bold text-gray-800"
               >
-                ATS Score Analysis
+                Welcome, {username}!
               </motion.h2>
               <div className="w-24" /> {/* Spacer for balance */}
             </div>
